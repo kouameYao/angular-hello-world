@@ -1,12 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { IHotel } from './hotel';
 
 @Component({
   selector: 'app-hotel-list',
   templateUrl: './hotel-list.component.html',
+  styleUrls: ['./hotel-list.component.css'],
 })
-export class HotelListComponent {
+export class HotelListComponent implements OnInit {
+  ngOnInit(): void {
+    console.log('Mon cycle de vie OnInit fonctionne correctement');
+  }
   public title = 'Titre hotels';
-  public hotels: any[] = [
+  public hotels: IHotel[] = [
     {
       hotelId: 1,
       hotelName: 'Hotel 1',
@@ -38,6 +43,7 @@ export class HotelListComponent {
   ];
 
   public showBadge: boolean = false;
+  public hotelFilter = 'mot';
 
   public toggleIsNewBadge(): void {
     this.showBadge = !this.showBadge;
