@@ -18,7 +18,7 @@ export class HotelDetailComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const id: number = Number(this.route.snapshot.paramMap.get('id'));
+    const id = Number(this.route.snapshot.paramMap.get('id'));
     console.log(id);
 
     this.hotelService.getHotels().subscribe((hotels: IHotel[]) => {
