@@ -2,7 +2,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators';
-import { IHotel } from './hotel';
+import { IHotel } from 'src/app/hotels/shared/models/hotel';
 
 @Injectable({
   providedIn: 'root',

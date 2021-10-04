@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { IHotel } from './hotel';
-import { HotelListService } from './hotel-list.service';
+import { IHotel } from 'src/app/hotels/shared/models/hotel';
+import { HotelListService } from '../shared/services/hotel-list.service';
 
 @Component({
   selector: 'app-hotel-list',
