@@ -6,25 +6,14 @@ import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { StarRatingComponent } from './shared/components/start-rating/start-rating.component';
-import { ReplaceComma } from './shared/pipe/replace-comma.pipe';
 import { HomeComponent } from './home/home.component';
-import { HotelDetailComponent } from './hotels/hotel-detail/hotel-detail.component';
 import { RouterModule } from '@angular/router';
-import { HotelListComponent } from './hotels/hotel-list/hotel-list.component';
-import { HotelDetailGuard } from './hotels/shared/guards/hotel-detail.guard';
+import { HotelModule } from './hotels/hotel.module';
 
 registerLocaleData(localeFr, 'fr');
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HotelListComponent,
-    ReplaceComma,
-    StarRatingComponent,
-    HomeComponent,
-    HotelDetailComponent,
-  ],
+  declarations: [AppComponent, HomeComponent],
   imports: [
     BrowserModule,
     FormsModule,
@@ -32,14 +21,9 @@ registerLocaleData(localeFr, 'fr');
     RouterModule.forRoot([
       { path: 'home', component: HomeComponent },
       { path: '', redirectTo: 'home', pathMatch: 'full' },
-      {
-        path: 'hotels/:id',
-        component: HotelDetailComponent,
-        canActivate: [HotelDetailGuard],
-      },
-      { path: 'hotels', component: HotelListComponent },
       { path: '**', redirectTo: 'home', pathMatch: 'full' },
     ]),
+    HotelModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
