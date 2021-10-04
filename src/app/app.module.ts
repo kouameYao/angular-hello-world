@@ -6,11 +6,11 @@ import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { HotelListComponent } from './hotels-list/hotel-list.component';
+import { HotelListComponent } from './hotel-list/hotel-list.component';
 import { StarRatingComponent } from './shared/components/start-rating/start-rating.component';
 import { ReplaceComma } from './shared/pipe/replace-comma.pipe';
 import { HomeComponent } from './home/home.component';
-import { HotelDetailComponent } from './hotels-list/hotel-detail/hotel-detail.component';
+import { HotelDetailComponent } from './hotel-list/hotel-detail/hotel-detail.component';
 import { RouterModule } from '@angular/router';
 
 registerLocaleData(localeFr, 'fr');
