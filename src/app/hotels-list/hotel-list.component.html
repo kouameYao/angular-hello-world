@@ -1,5 +1,8 @@
 <h2 *ngIf="hotels && hotels.length > 0">{{ title }}</h2>
-<button class="btn btn-primary d-flex mb-2 mt-2" (click)="toggleIsNewBadge()">
+<button
+  class="btn bg-info d-flex mb-2 mt-2 text-white"
+  (click)="toggleIsNewBadge()"
+>
   <span class="material-icons">
     {{ showBadge ? "visibility_off" : "visibility" }}
   </span>
