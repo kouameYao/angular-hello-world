@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
-import { tap, catchError } from 'rxjs/operators';
+import { Observable, throwError, of } from 'rxjs';
+import { tap, catchError, map } from 'rxjs/operators';
 import { IHotel } from 'src/app/hotels/shared/models/hotel';
 
 @Injectable({
@@ -20,6 +20,15 @@ export class HotelListService {
     );
   }
 
+  public getHotelById(id: number) {
+    if (id === 0) {
+      return of(this.defaultValue());
+    }
+    return this.getHotels().pipe(
+      map((hotels) => hotels.find((hotel) => hotel.hotelId === id))
+    );
+  }
+
   private handleError(error: HttpErrorResponse) {
     if (error.status === 0) {
       // A client-side or network error occurred. Handle it accordingly.
@@ -34,5 +43,16 @@ export class HotelListService {
     }
     // Return an observable with a user-facing error message.
     return throwError('Something bad happened; please try again later.');
+  }
+
+  public defaultValue(): IHotel {
+    return {
+      hotelId: 0,
+      hotelName: '',
+      price: 0,
+      description: '',
+      rating: 0,
+      imageUrl: '',
+    };
   }
 }

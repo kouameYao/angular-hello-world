@@ -1,1 +1,75 @@
-<p>hotel-edit works!</p>
+<div class="card">
+  <div class="card-header text-white bg-info">{{ pageTitle }}</div>
+  <div class="card-body">
+    <form novalidate (ngSubmit)="saveHotel()" [formGroup]="hotelForm">
+      <div class="form-group row mb-2">
+        <label for="nom" class="col-md-3 col-form-label">Nom</label>
+        <div class="col-md-8">
+          <input
+            type="text"
+            id="nom"
+            formControlName="hotelName"
+            class="form-control"
+            placeholder="Nom(obligatoire)"
+          />
+        </div>
+      </div>
+      <div class="form-group row mb-2">
+        <label for="prix" class="col-md-3 col-form-label">Prix</label>
+        <div class="col-md-8">
+          <input
+            type="text"
+            id="prix"
+            formControlName="hotelPrice"
+            class="form-control"
+            placeholder="Prix(obligatoire)"
+          />
+        </div>
+      </div>
+      <div class="form-group row mb-2">
+        <label for="evaluation" class="col-md-3 col-form-label"
+          >Evaluatiuon (1-5)</label
+        >
+        <div class="col-md-8">
+          <input
+            type="text"
+            id="evaluation"
+            formControlName="starRating"
+            class="form-control"
+            placeholder="Evaluation(facultatif)"
+          />
+        </div>
+      </div>
+      <div class="form-group row mb-2">
+        <label for="description" class="col-md-3 col-form-label"
+          >Description</label
+        >
+        <div class="col-md-8">
+          <textarea
+            id="description"
+            formControlName="description"
+            class="form-control"
+            placeholder="description(facultatif)"
+          ></textarea>
+        </div>
+      </div>
+      <div class="form-group row mb-2">
+        <div class="offset-md-2 col">
+          <button type="submit" class="btn btn-info">Sauvegarder</button>
+          <button
+            type="button"
+            class="btn btn-outline-secondary m-3"
+            routerLink="/hotels"
+          >
+            Annuler
+          </button>
+          <button type="button" class="btn btn-outline-danger">
+            Supprimer
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<pre> {{ hotelForm.value | json }} </pre>
