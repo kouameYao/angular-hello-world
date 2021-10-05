@@ -11,7 +11,7 @@ import { HotelListService } from '../shared/services/hotel-list.service';
 })
 export class HotelEditComponent implements OnInit {
   public hotel: IHotel = {
-    hotelId: 0,
+    id: 0,
     hotelName: '',
     price: 0,
     description: '',
@@ -52,7 +52,7 @@ export class HotelEditComponent implements OnInit {
   public displayHotel(hotel: any): void {
     this.hotel = hotel;
 
-    if (this.hotel.hotelId === 0) {
+    if (this.hotel.id === 0) {
       this.pageTitle = 'Ajouter hotel';
     } else {
       this.pageTitle = `Modifier l'hotel : ${this.hotel.hotelName}`;

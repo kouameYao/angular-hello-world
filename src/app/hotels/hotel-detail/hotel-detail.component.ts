@@ -22,7 +22,7 @@ export class HotelDetailComponent implements OnInit {
     console.log(id);
 
     this.hotelService.getHotels().subscribe((hotels: IHotel[]) => {
-      this.hotel = hotels.find((hotel) => (hotel.hotelId = id));
+      this.hotel = hotels.find((hotel) => (hotel.id = id));
       console.log(this.hotel);
     });
   }

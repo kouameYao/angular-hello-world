@@ -8,7 +8,7 @@ import { IHotel } from 'src/app/hotels/shared/models/hotel';
   providedIn: 'root',
 })
 export class HotelListService {
-  private readonly HOTEL_API_URL = 'api/hotels.json';
+  private readonly HOTEL_API_URL = 'api/hotels';
   constructor(private http: HttpClient) {}
 
   // Nous mettons observable sur le IHtotels car, le http ne retourne pas à la base une reponse de ce type IHotels
@@ -25,7 +25,7 @@ export class HotelListService {
       return of(this.defaultValue());
     }
     return this.getHotels().pipe(
-      map((hotels) => hotels.find((hotel) => hotel.hotelId === id))
+      map((hotels) => hotels.find((hotel) => hotel.id === id))
     );
   }
 
@@ -47,7 +47,7 @@ export class HotelListService {
 
   public defaultValue(): IHotel {
     return {
-      hotelId: 0,
+      id: 0,
       hotelName: '',
       price: 0,
       description: '',
