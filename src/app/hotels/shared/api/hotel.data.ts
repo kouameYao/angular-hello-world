@@ -39,4 +39,8 @@ export class HotelsData implements InMemoryDbService {
     ];
     return { hotels };
   }
+
+  genId(hotels : IHotel[]) : number {
+    return hotels.length > 0 ? Math.max(...hotels.map(hotel => hotel.id)) + 1 : 1;
+  }
 }
