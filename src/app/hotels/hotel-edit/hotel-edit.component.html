@@ -1,5 +1,16 @@
-<div class="card">
+  <ng-container *ngIf="errMessage">
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <span class="material-icons mr-5">error</span>
+      {{ errMessage }}
+      <button type="button" class="btn-close" aria-label="Close" (click)="hideError()"></button>
+    </div>
+  </ng-container>
+  
+  <div class="card">
   <div class="card-header text-white bg-info">{{ pageTitle }}</div>
+
+  
+
   <div class="card-body">
     <form novalidate (ngSubmit)="saveHotel()" [formGroup]="hotelForm">
       <div class="form-group row mb-2">

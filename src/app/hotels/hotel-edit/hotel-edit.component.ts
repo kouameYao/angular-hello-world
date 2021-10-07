@@ -21,13 +21,6 @@ export class HotelEditComponent implements OnInit {
 
   public pageTitle = '';
 
-  constructor(
-    private fb: FormBuilder,
-    private route: ActivatedRoute,
-    private router : Router,
-    private hotelListService: HotelListService
-  ) {}
-
   public hotelForm: FormGroup = this.fb.group({
     hotelName: ['', Validators.required],
     price: ['', Validators.required],
@@ -35,6 +28,16 @@ export class HotelEditComponent implements OnInit {
     description: [''],
     tags: this.fb.array([])
   });
+
+  public errMessage : string = '';
+  
+
+  constructor(
+    private fb: FormBuilder,
+    private route: ActivatedRoute,
+    private router : Router,
+    private hotelListService: HotelListService
+  ) {}
 
   ngOnInit(): void {
     this.hotelForm;
@@ -78,11 +81,13 @@ export class HotelEditComponent implements OnInit {
         }
         if (hotel.id === 0) {
           this.hotelListService.createHotel(hotel).subscribe({
-            next : () => this.saveCompleted()
+            next : () => this.saveCompleted(),
+            error: (err) => this.errMessage = err
           })
         } else {
           this.hotelListService.updateHotel(hotel).subscribe({
-            next: () => this.saveCompleted()
+            next: () => this.saveCompleted(),
+            error: (err) => this.errMessage = err
           })
         }
       }
@@ -93,7 +98,8 @@ export class HotelEditComponent implements OnInit {
   public delete() : void {
     if (confirm(`Voulez-vous supprimer ${this.hotel.hotelName} ?`)) {
       this.hotelListService.deleteHotel(this.hotel.id).subscribe({
-        next : () => this.saveCompleted()
+        next : () => this.saveCompleted(),
+        error: (err) => this.errMessage = err
       })
     }
 
@@ -117,5 +123,9 @@ export class HotelEditComponent implements OnInit {
   public deleteTag(index: number) : void {
     this.tags.removeAt(index)
     this.tags.markAsDirty()
+  }
+
+  public hideError() : void {
+    this.errMessage = '';
   }
 }
