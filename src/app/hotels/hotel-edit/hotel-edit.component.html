@@ -3,7 +3,7 @@
   <div class="card-body">
     <form novalidate (ngSubmit)="saveHotel()" [formGroup]="hotelForm">
       <div class="form-group row mb-2">
-        <label for="nom" class="col-md-3 col-form-label">Nom</label>
+        <label for="nom" class="col-md-2 col-form-label">Nom</label>
         <div class="col-md-8">
           <input
             type="text"
@@ -15,7 +15,7 @@
         </div>
       </div>
       <div class="form-group row mb-2">
-        <label for="prix" class="col-md-3 col-form-label">Prix</label>
+        <label for="prix" class="col-md-2 col-form-label">Prix</label>
         <div class="col-md-8">
           <input
             type="text"
@@ -27,7 +27,7 @@
         </div>
       </div>
       <div class="form-group row mb-2">
-        <label for="evaluation" class="col-md-3 col-form-label"
+        <label for="evaluation" class="col-md-2 col-form-label"
           >Evaluatiuon (1-5)</label
         >
         <div class="col-md-8">
@@ -40,8 +40,39 @@
           />
         </div>
       </div>
+
+      <div formArrayName="tags">
+        <div class="form-group row mb-2" *ngFor="let tag of tags.controls; let i=index">
+          <label [attr.for]="i" class="col-md-2 col-form-label"
+            >{{ 'Etiquette ' + (i + 1)}}</label
+          >
+          <div class="col-md-8">
+            <input
+              type="text"
+              [id]="i"
+              [formControlName]="i"
+              class="form-control"
+              placeholder="{{ 'Etiquette ' + (i + 1)}}"
+            />
+          </div>
+          <button
+              type="button"
+              class="col-md-2 btn btn-outline-danger"
+              (click)="deleteTag(i)"
+            >Supprimer</button>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-2 mb-2">
+          <button class="btn btn-outline-primary btn-sm" (click)= "addTag()">
+            Ajouter une etiquette
+          </button>
+        </div>
+      </div>
+      
       <div class="form-group row mb-2">
-        <label for="description" class="col-md-3 col-form-label"
+        <label for="description" class="col-md-2 col-form-label"
           >Description</label
         >
         <div class="col-md-8">
@@ -63,7 +94,7 @@
           >
             Annuler
           </button>
-          <button type="button" class="btn btn-outline-danger">
+          <button type="button" class="btn btn-outline-danger" [disabled]="hotel.id === 0" (click)="delete()">
             Supprimer
           </button>
         </div>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IHotel } from '../shared/models/hotel';
 import { HotelListService } from '../shared/services/hotel-list.service';
@@ -33,11 +33,12 @@ export class HotelEditComponent implements OnInit {
     price: ['', Validators.required],
     rating: [''],
     description: [''],
+    tags: this.fb.array([])
   });
 
   ngOnInit(): void {
     this.hotelForm;
-
+    this.tags
     this.route.paramMap.subscribe((params) => {
       const id = Number(params.get('id'));
       this.getSelectedHotel(id);
@@ -88,8 +89,32 @@ export class HotelEditComponent implements OnInit {
     console.log(this.hotelForm.value);
   }
 
+  public delete() : void {
+    if (confirm(`Voulez-vous supprimer ${this.hotel.hotelName} ?`)) {
+      this.hotelListService.deleteHotel(this.hotel.id).subscribe({
+        next : () => this.saveCompleted()
+      })
+    }
+
+  }
+
   public saveCompleted() : void {
     this.hotelForm.reset()
     this.router.navigate(['/hotels'])
+  }
+
+  // Formulaire dynamique
+
+  public get tags() : FormArray {    
+    return this.hotelForm.get('tags') as FormArray
+  }
+
+  public addTag(): void {
+    this.tags.push(new FormControl())
+  }
+
+  public deleteTag(index: number) : void {
+    this.tags.removeAt(index)
+    this.tags.markAsDirty()
   }
 }
