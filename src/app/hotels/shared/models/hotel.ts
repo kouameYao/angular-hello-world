@@ -5,6 +5,8 @@ export interface IHotel {
   price: number;
   imageUrl: string;
   rating: number;
+  tags?: string[]
+  // En prefixant l'attribut d'un point d'interrogation, on le rend optionnel
 }
 
 // export class IHotel implements IHotel {

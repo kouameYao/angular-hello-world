@@ -61,9 +61,11 @@
           >
         </div>
 
-        <div *ngIf="showBadge" class="alert alert-success text-center">
-          <span>Nouveau</span>
-        </div>
+        <ng-container *ngFor="let tag of hotel.tags; let i=index">
+          <ng-container *ngIf="showBadge" >
+            <span class="badge text-center" [ngClass]="i % 2 === 0 ? 'alert-info': 'alert-success ml-2 mr-2'">{{ tag }}</span>
+          </ng-container>
+        </ng-container>
       </div>
     </div>
   </div>

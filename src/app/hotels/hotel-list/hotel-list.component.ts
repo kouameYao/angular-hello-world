@@ -11,7 +11,7 @@ export class HotelListComponent implements OnInit {
   public title = 'Titre hotels';
   public hotels: IHotel[] = [];
 
-  public showBadge: boolean = false;
+  public showBadge: boolean = true;
   // Notre variale de filtre.
   public _hotelFilter = 'mot';
   public filteredHotels: IHotel[] = [];
